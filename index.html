@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Falcon Platform - AIがあなたの代わりに24時間働く</title>
+  <meta name="description" content="プログラミング不要。テンプレートを選ぶだけで、あなた専用のAIアシスタントが今すぐ稼働開始。">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            dark: {
+              900: '#0a0a0a',
+              800: '#0f0f0f',
+              700: '#1a1a1a',
+              600: '#2a2a2a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Custom animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.5); }
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero background */
+    .hero-bg {
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent);
+    }
+
+    /* Bento card hover */
+    .bento-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Typing animation */
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+    .typing-text {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #6366f1;
+      animation: typing 2s steps(20) 1s forwards, blink 0.7s step-end infinite;
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-white font-sans antialiased">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-lg border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">Falcon</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#features" class="text-gray-400 hover:text-white transition">機能</a>
+          <a href="#templates" class="text-gray-400 hover:text-white transition">テンプレート</a>
+          <a href="#pricing" class="text-gray-400 hover:text-white transition">料金</a>
+          <a href="#faq" class="text-gray-400 hover:text-white transition">FAQ</a>
+        </nav>
+
+        <!-- CTA -->
+        <div class="flex items-center space-x-4">
+          <a href="#" class="hidden sm:block text-gray-400 hover:text-white transition">ログイン</a>
+          <a href="#pricing" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-medium transition transform hover:scale-105">
+            無料で始める
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="md:hidden p-2" id="mobile-menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center hero-bg pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center px-4 py-2 bg-primary-500/10 border border-primary-500/20 rounded-full text-primary-400 text-sm mb-6">
+            <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+            Beta版 公開中
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            AIが、あなたの代わりに<br>
+            <span class="gradient-text">24時間働く</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
+            プログラミング不要。テンプレートを選ぶだけで、あなた専用のAIアシスタントが今すぐ稼働開始。面倒な定型業務から解放されましょう。
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#pricing" class="w-full sm:w-auto bg-gradient-to-r from-primary-500 to-purple-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition transform hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25 text-center">
+              無料で始める
+            </a>
+            <a href="#how-it-works" class="w-full sm:w-auto border border-gray-700 hover:border-gray-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition text-center">
+              仕組みを見る
+            </a>
+          </div>
+
+          <p class="text-sm text-gray-500 mt-4">
+            14日間無料 ・ クレジットカード不要
+          </p>
+        </div>
+
+        <!-- Visual -->
+        <div class="relative">
+          <div class="bg-dark-700 rounded-2xl border border-white/10 p-4 animate-float">
+            <!-- Mock Dashboard -->
+            <div class="bg-dark-800 rounded-xl overflow-hidden">
+              <!-- Header bar -->
+              <div class="flex items-center space-x-2 px-4 py-3 border-b border-white/5">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <span class="text-xs text-gray-500 ml-4">Falcon Dashboard</span>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 space-y-4">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-sm text-gray-400">稼働中のAI</div>
+                    <div class="text-2xl font-bold text-green-400">3 Active</div>
+                  </div>
+                  <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center animate-pulse-glow">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="space-y-3">
+                  <div class="bg-dark-700 rounded-lg p-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="text-sm font-medium">Web監視Bot</div>
+                        <div class="text-xs text-gray-500">3件の変更を検知</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">稼働中</span>
+                  </div>
+
+                  <div class="bg-dark-700 rounded-lg p-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="text-sm font-medium">レポート生成</div>
+                        <div class="text-xs text-gray-500">次回実行: 18:00</div>
+                      </div>
+                    </div>
+                    <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">待機中</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative elements -->
+          <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[100px]"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem → Solution -->
+  <section class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Before -->
+        <div class="bg-dark-700/50 rounded-2xl p-8 border border-white/5">
+          <div class="text-red-400 text-sm font-medium mb-4">BEFORE</div>
+          <h3 class="text-2xl font-bold mb-6">こんな悩み、ありませんか？</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+              <span class="text-gray-300">毎日同じ作業の繰り返しで時間がない</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+              <span class="text-gray-300">データ収集に何時間もかかる</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+              <span class="text-gray-300">24時間対応なんて人手では無理</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+              <span class="text-gray-300">エンジニアに頼む予算がない</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- After -->
+        <div class="bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-2xl p-8 border border-primary-500/20">
+          <div class="text-primary-400 text-sm font-medium mb-4">AFTER</div>
+          <h3 class="text-2xl font-bold mb-6">Falconが解決します</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-gray-300">AIが自動で処理、あなたは本業に集中</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-gray-300">数分でレポート生成、待ち時間ゼロ</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-gray-300">夜中でもAIが監視・対応</span>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span class="text-gray-300">月額980円から、すぐに始められる</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          <span class="gradient-text">3ステップ</span>で始められる
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+          複雑な設定は不要。テンプレートを選んで、数クリックで設定するだけ。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-primary-400">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">テンプレートを選ぶ</h3>
+          <p class="text-gray-400">
+            Web監視、レポート生成、SNS自動投稿など、目的に合ったテンプレートを選択
+          </p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="hidden md:flex items-center justify-center">
+          <svg class="w-8 h-8 text-gray-600 -mt-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center md:col-start-2">
+          <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-purple-400">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">数クリックで設定</h3>
+          <p class="text-gray-400">
+            監視するURL、通知先、スケジュールなど、必要な情報を入力するだけ
+          </p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="hidden md:flex items-center justify-center md:col-start-3 md:row-start-1">
+          <svg class="w-8 h-8 text-gray-600 -mt-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center md:col-start-3">
+          <div class="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-green-400">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">AIが24時間稼働</h3>
+          <p class="text-gray-400">
+            あとはAIにお任せ。進捗はダッシュボードでいつでも確認できます
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates -->
+  <section id="templates" class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          すぐに使える<span class="gradient-text">テンプレート</span>
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+          目的に合わせて選ぶだけ。カスタマイズも自由自在。
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Template 1 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-2">Web監視Bot</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            指定したWebサイトの変更を監視。更新があれば即座に通知します。
+          </p>
+          <div class="flex items-center text-xs text-gray-500">
+            <span class="bg-dark-600 px-2 py-1 rounded">競合監視</span>
+            <span class="bg-dark-600 px-2 py-1 rounded ml-2">価格追跡</span>
+          </div>
+        </div>
+
+        <!-- Template 2 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-2">レポート自動生成</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            データを収集・分析して、定期的にレポートを自動生成します。
+          </p>
+          <div class="flex items-center text-xs text-gray-500">
+            <span class="bg-dark-600 px-2 py-1 rounded">日報</span>
+            <span class="bg-dark-600 px-2 py-1 rounded ml-2">分析</span>
+          </div>
+        </div>
+
+        <!-- Template 3 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-2">SNS自動投稿</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            スケジュールに従ってSNSに自動投稿。エンゲージメント分析も。
+          </p>
+          <div class="flex items-center text-xs text-gray-500">
+            <span class="bg-dark-600 px-2 py-1 rounded">X</span>
+            <span class="bg-dark-600 px-2 py-1 rounded ml-2">Instagram</span>
+          </div>
+        </div>
+
+        <!-- Template 4 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-2">メール自動返信</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            受信メールを分析し、適切な返信を自動生成。確認後に送信。
+          </p>
+          <div class="flex items-center text-xs text-gray-500">
+            <span class="bg-dark-600 px-2 py-1 rounded">カスタマーサポート</span>
+          </div>
+        </div>
+
+        <!-- Template 5 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-2">在庫監視</h3>
+          <p class="text-gray-400 text-sm mb-4">
+            ECサイトの在庫状況を監視。再入荷時に即座に通知します。
+          </p>
+          <div class="flex items-center text-xs text-gray-500">
+            <span class="bg-dark-600 px-2 py-1 rounded">EC</span>
+            <span class="bg-dark-600 px-2 py-1 rounded ml-2">転売対策</span>
+          </div>
+        </div>
+
+        <!-- Template 6 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-6 border border-white/5 flex items-center justify-center">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-gray-600/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-gray-400">カスタム</h3>
+            <p class="text-gray-500 text-sm">
+              Proプラン以上で<br>オリジナルテンプレート作成可能
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Bento Grid -->
+  <section id="features" class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          ビジネスを<span class="gradient-text">加速する</span>機能
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <!-- Feature 1 - Large -->
+        <div class="md:col-span-2 bento-card bg-dark-700 rounded-2xl p-8 border border-white/5">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-primary-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">24時間365日稼働</h3>
+              <p class="text-gray-400">
+                あなたが寝ている間も、休暇中も、AIは休まず働き続けます。監視、レポート生成、通知など、すべて自動で実行。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-8 border border-white/5">
+          <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">安全な専用環境</h3>
+          <p class="text-gray-400 text-sm">
+            専用VMで完全分離。データは暗号化され、アクセスは監査ログに記録。
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-8 border border-white/5">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">ノーコード</h3>
+          <p class="text-gray-400 text-sm">
+            プログラミング知識は一切不要。テンプレートを選んで設定するだけ。
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bento-card bg-dark-700 rounded-2xl p-8 border border-white/5">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">チーム共有</h3>
+          <p class="text-gray-400 text-sm">
+            Businessプラン以上で複数人での管理が可能。役割ベースのアクセス制御。
+          </p>
+        </div>
+
+        <!-- Feature 5 - Large -->
+        <div class="md:col-span-2 bento-card bg-dark-700 rounded-2xl p-8 border border-white/5">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">Web UIで全操作</h3>
+              <p class="text-gray-400">
+                コマンドラインは不要。ブラウザからすべての操作が可能。ダッシュボードで進捗を確認し、ログを閲覧し、設定を変更。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          シンプルな<span class="gradient-text">料金プラン</span>
+        </h2>
+        <p class="text-gray-400 text-lg">
+          固定価格で予測可能。隠れた費用はありません。
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Starter -->
+        <div class="bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="text-sm text-gray-400 mb-2">Starter</div>
+          <div class="flex items-baseline mb-4">
+            <span class="text-4xl font-bold">¥980</span>
+            <span class="text-gray-500 ml-2">/月</span>
+          </div>
+          <p class="text-gray-400 text-sm mb-6">個人・副業の方に</p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              1 VM
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              100タスク/月
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              基本テンプレート
+            </li>
+            <li class="flex items-center text-sm text-gray-500">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+              スケジュール実行
+            </li>
+          </ul>
+          <a href="#" class="block w-full text-center py-3 border border-gray-700 rounded-full hover:border-gray-600 transition">
+            始める
+          </a>
+        </div>
+
+        <!-- Pro - Popular -->
+        <div class="bg-gradient-to-b from-primary-500/20 to-dark-700 rounded-2xl p-6 border border-primary-500/30 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+            人気
+          </div>
+          <div class="text-sm text-primary-400 mb-2">Pro</div>
+          <div class="flex items-baseline mb-4">
+            <span class="text-4xl font-bold">¥2,980</span>
+            <span class="text-gray-500 ml-2">/月</span>
+          </div>
+          <p class="text-gray-400 text-sm mb-6">フリーランスの方に</p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              1 VM（高スペック）
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              無制限タスク
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              カスタムテンプレート
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              スケジュール実行
+            </li>
+          </ul>
+          <a href="#" class="block w-full text-center py-3 bg-primary-500 hover:bg-primary-600 rounded-full transition font-medium">
+            始める
+          </a>
+        </div>
+
+        <!-- Business -->
+        <div class="bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="text-sm text-gray-400 mb-2">Business</div>
+          <div class="flex items-baseline mb-4">
+            <span class="text-4xl font-bold">¥9,800</span>
+            <span class="text-gray-500 ml-2">/月</span>
+          </div>
+          <p class="text-gray-400 text-sm mb-6">チームでの利用に</p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              3 VM
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              5ユーザーまで
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              優先サポート
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              SLA 99.5%
+            </li>
+          </ul>
+          <a href="#" class="block w-full text-center py-3 border border-gray-700 rounded-full hover:border-gray-600 transition">
+            始める
+          </a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-dark-700 rounded-2xl p-6 border border-white/5">
+          <div class="text-sm text-gray-400 mb-2">Enterprise</div>
+          <div class="flex items-baseline mb-4">
+            <span class="text-2xl font-bold">お問い合わせ</span>
+          </div>
+          <p class="text-gray-400 text-sm mb-6">大規模チーム向け</p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              無制限VM
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              SSO / SAML
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              専任サポート
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              SLA 99.9%
+            </li>
+          </ul>
+          <a href="#" class="block w-full text-center py-3 border border-gray-700 rounded-full hover:border-gray-600 transition">
+            お問い合わせ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          よくある<span class="gradient-text">質問</span>
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-dark-700 rounded-xl border border-white/5 group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer">
+            <span class="font-medium">プログラミングの知識は必要ですか？</span>
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-400">
+            いいえ、不要です。テンプレートを選んで設定するだけで始められます。技術的な知識がなくても、数クリックでAIアシスタントを稼働させることができます。
+          </div>
+        </details>
+
+        <details class="bg-dark-700 rounded-xl border border-white/5 group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer">
+            <span class="font-medium">無料トライアルはありますか？</span>
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-400">
+            はい、全プランを14日間無料でお試しいただけます。クレジットカードの登録も不要です。
+          </div>
+        </details>
+
+        <details class="bg-dark-700 rounded-xl border border-white/5 group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer">
+            <span class="font-medium">どんなAIモデルを使っていますか？</span>
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-400">
+            GPT-4o、Claude 3.5 Sonnetなど、最新のAIモデルを活用しています。プランによって利用可能なモデルが異なります。
+          </div>
+        </details>
+
+        <details class="bg-dark-700 rounded-xl border border-white/5 group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer">
+            <span class="font-medium">セキュリティは大丈夫ですか？</span>
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-400">
+            専用VM環境で完全に分離されており、他のユーザーのデータにアクセスすることはできません。全ての操作は監査ログに記録され、通信は暗号化されています。
+          </div>
+        </details>
+
+        <details class="bg-dark-700 rounded-xl border border-white/5 group">
+          <summary class="flex items-center justify-between p-6 cursor-pointer">
+            <span class="font-medium">解約はいつでもできますか？</span>
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 text-gray-400">
+            はい、いつでも解約可能です。縛りはありません。年払いの場合は、残期間分の日割り返金にも対応しています。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+        今日から、あなたの<span class="gradient-text">AIアシスタント</span>を始めよう
+      </h2>
+      <p class="text-gray-400 text-lg mb-8">
+        14日間無料。クレジットカード不要。いつでもキャンセル可能。
+      </p>
+      <a href="#pricing" class="inline-block bg-gradient-to-r from-primary-500 to-purple-500 text-white px-8 py-4 rounded-full font-semibold text-lg transition transform hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25">
+        無料で始める
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="flex items-center space-x-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <span class="text-xl font-bold">Falcon</span>
+          </a>
+          <p class="text-gray-500 text-sm">
+            AIがあなたの代わりに24時間働く
+          </p>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <h4 class="font-semibold mb-4">プロダクト</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#features" class="hover:text-white transition">機能</a></li>
+            <li><a href="#templates" class="hover:text-white transition">テンプレート</a></li>
+            <li><a href="#pricing" class="hover:text-white transition">料金</a></li>
+            <li><a href="#" class="hover:text-white transition">ドキュメント</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="font-semibold mb-4">会社</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-white transition">会社概要</a></li>
+            <li><a href="#" class="hover:text-white transition">ブログ</a></li>
+            <li><a href="#" class="hover:text-white transition">採用情報</a></li>
+            <li><a href="#" class="hover:text-white transition">お問い合わせ</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="font-semibold mb-4">法的情報</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-white transition">利用規約</a></li>
+            <li><a href="#" class="hover:text-white transition">プライバシーポリシー</a></li>
+            <li><a href="#" class="hover:text-white transition">特定商取引法</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between">
+        <p class="text-gray-500 text-sm">
+          &copy; 2026 Falcon Platform. All rights reserved.
+        </p>
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    // Add mobile menu functionality if needed
+  </script>
+</body>
+</html>
