@@ -1114,7 +1114,111 @@
     </div>
   </footer>
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <script>
+    // ============================================
+    // A/B Testing Framework
+    // ============================================
+    (function() {
+      const AB_STORAGE_KEY = 'fuyajo_ab_variant';
+      const AB_TESTS = {
+        // Define tests here. Each test has variants with CSS class changes or content changes.
+        // Example:
+        // cta_color: {
+        //   a: { }, // control (default)
+        //   b: { btnClass: 'btn-amber' } // variant
+        // }
+      };
+
+      // Get or assign variant
+      function getVariant() {
+        // Check URL parameter first (?v=b)
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlVariant = urlParams.get('v');
+        if (urlVariant === 'a' || urlVariant === 'b') {
+          localStorage.setItem(AB_STORAGE_KEY, urlVariant);
+          return urlVariant;
+        }
+
+        // Check localStorage
+        const stored = localStorage.getItem(AB_STORAGE_KEY);
+        if (stored === 'a' || stored === 'b') {
+          return stored;
+        }
+
+        // Random assignment (50/50)
+        const variant = Math.random() < 0.5 ? 'a' : 'b';
+        localStorage.setItem(AB_STORAGE_KEY, variant);
+        return variant;
+      }
+
+      // Apply variant changes
+      function applyVariant(variant) {
+        // Store variant for reference
+        window.fuyajoVariant = variant;
+
+        // Track variant view in GA4
+        if (typeof gtag === 'function') {
+          gtag('event', 'ab_test_view', {
+            'variant': variant,
+            'page': window.location.pathname
+          });
+        }
+
+        // Apply test-specific changes
+        // (Add logic here when tests are defined)
+
+        console.log('[AB Test] Variant:', variant);
+      }
+
+      // Track conversion
+      window.trackConversion = function(action) {
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'variant': window.fuyajoVariant || 'unknown',
+            'action': action
+          });
+        }
+        console.log('[AB Test] Conversion:', action, 'Variant:', window.fuyajoVariant);
+      };
+
+      // Initialize
+      const variant = getVariant();
+      applyVariant(variant);
+
+      // Track CTA clicks
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track all CTA button clicks
+        document.querySelectorAll('.btn-ruby, .btn-brass').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            trackConversion('cta_click');
+          });
+        });
+
+        // Track pricing section views (scroll into view)
+        const pricingSection = document.getElementById('pricing');
+        if (pricingSection) {
+          const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                trackConversion('pricing_view');
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.5 });
+          observer.observe(pricingSection);
+        }
+      });
+    })();
+
     // Mobile menu toggle (placeholder)
     const menuBtn = document.getElementById('mobile-menu-btn');
     // Add mobile menu functionality if needed
