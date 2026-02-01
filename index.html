@@ -152,7 +152,7 @@
       transform: translateY(-2px);
     }
 
-    /* Ruby CTA button */
+    /* Ruby CTA button (Variant A - Control) */
     .btn-ruby {
       background: linear-gradient(180deg, #f87171 0%, #dc2626 50%, #b91c1c 100%);
       border: 1px solid #991b1b;
@@ -170,13 +170,31 @@
       transform: translateY(-2px);
     }
 
+    /* Amber CTA button (Variant B - Test) */
+    .btn-amber {
+      background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+      border: 1px solid #b45309;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        0 0 20px rgba(245, 158, 11, 0.3);
+      color: #0f1829;
+      transition: all 0.3s ease;
+    }
+    .btn-amber:hover {
+      background: linear-gradient(180deg, #fde68a 0%, #fbbf24 50%, #f59e0b 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 0 30px rgba(245, 158, 11, 0.5);
+      transform: translateY(-2px);
+    }
+
     /* Decorative line */
     .deco-line {
       height: 1px;
       background: linear-gradient(90deg, transparent 0%, #6b5a45 20%, #a89060 50%, #6b5a45 80%, transparent 100%);
     }
 
-    /* Ruby glow animation */
+    /* Ruby glow animation (Variant A) */
     @keyframes ruby-pulse {
       0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.3); }
       50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.5); }
@@ -184,6 +202,16 @@
 
     .animate-ruby-pulse {
       animation: ruby-pulse 2s ease-in-out infinite;
+    }
+
+    /* Amber glow animation (Variant B) */
+    @keyframes amber-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); }
+    }
+
+    .animate-amber-pulse {
+      animation: amber-pulse 2s ease-in-out infinite;
     }
 
     /* Floating particles with brass colors */
@@ -1129,14 +1157,10 @@
     // ============================================
     (function() {
       const AB_STORAGE_KEY = 'fuyajo_ab_variant';
-      const AB_TESTS = {
-        // Define tests here. Each test has variants with CSS class changes or content changes.
-        // Example:
-        // cta_color: {
-        //   a: { }, // control (default)
-        //   b: { btnClass: 'btn-amber' } // variant
-        // }
-      };
+      // Active A/B Test: CTA Button Color
+      // Variant A (Control): Ruby red - matches icon, conveys urgency
+      // Variant B (Test): Amber gold - warmer, less "blood-like"
+      const AB_TEST_NAME = 'cta_color_v1';
 
       // Get or assign variant
       function getVariant() {
@@ -1168,26 +1192,41 @@
         // Track variant view in GA4
         if (typeof gtag === 'function') {
           gtag('event', 'ab_test_view', {
+            'test_name': AB_TEST_NAME,
             'variant': variant,
             'page': window.location.pathname
           });
         }
 
-        // Apply test-specific changes
-        // (Add logic here when tests are defined)
+        // Variant B: Change Ruby to Amber
+        if (variant === 'b') {
+          document.querySelectorAll('.btn-ruby').forEach(function(el) {
+            el.classList.remove('btn-ruby');
+            el.classList.add('btn-amber');
+          });
+          document.querySelectorAll('.animate-ruby-pulse').forEach(function(el) {
+            el.classList.remove('animate-ruby-pulse');
+            el.classList.add('animate-amber-pulse');
+          });
+          // Update text highlight color
+          document.querySelectorAll('.text-ruby-glow').forEach(function(el) {
+            el.style.color = '#fcd34d'; // amber-glow
+          });
+        }
 
-        console.log('[AB Test] Variant:', variant);
+        console.log('[AB Test]', AB_TEST_NAME, '| Variant:', variant);
       }
 
       // Track conversion
       window.trackConversion = function(action) {
         if (typeof gtag === 'function') {
           gtag('event', 'conversion', {
+            'test_name': AB_TEST_NAME,
             'variant': window.fuyajoVariant || 'unknown',
             'action': action
           });
         }
-        console.log('[AB Test] Conversion:', action, 'Variant:', window.fuyajoVariant);
+        console.log('[AB Test] Conversion:', action, '| Test:', AB_TEST_NAME, '| Variant:', window.fuyajoVariant);
       };
 
       // Initialize
@@ -1197,7 +1236,7 @@
       // Track CTA clicks
       document.addEventListener('DOMContentLoaded', function() {
         // Track all CTA button clicks
-        document.querySelectorAll('.btn-ruby, .btn-brass').forEach(function(btn) {
+        document.querySelectorAll('.btn-ruby, .btn-amber, .btn-brass').forEach(function(btn) {
           btn.addEventListener('click', function() {
             trackConversion('cta_click');
           });
