@@ -39,11 +39,11 @@
               dark: '#8b7355',
               muted: '#6b5a45',
             },
-            // Ember red (matching icon glow)
-            ember: {
-              glow: '#ff4d5a',
-              DEFAULT: '#c22d3d',
-              dark: '#991b2a',
+            // Amber accent (warm, inviting)
+            amber: {
+              glow: '#fcd34d',
+              DEFAULT: '#f59e0b',
+              dark: '#d97706',
             },
             // Ivory text
             ivory: {
@@ -74,9 +74,9 @@
       background-clip: text;
     }
 
-    /* Ember glow text */
-    .gradient-text-ember {
-      background: linear-gradient(135deg, #ff4d5a 0%, #c22d3d 50%, #ff4d5a 100%);
+    /* Amber glow text */
+    .gradient-text-amber {
+      background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #fcd34d 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -92,7 +92,7 @@
     /* Hero background */
     .hero-bg {
       background:
-        radial-gradient(ellipse 100% 80% at 50% 100%, rgba(194, 45, 61, 0.08) 0%, rgba(168, 144, 96, 0.05) 40%, transparent 70%),
+        radial-gradient(ellipse 100% 80% at 50% 100%, rgba(245, 158, 11, 0.08) 0%, rgba(168, 144, 96, 0.05) 40%, transparent 70%),
         linear-gradient(180deg, #0a0f1a 0%, #0f1829 50%, #162035 100%);
     }
 
@@ -152,21 +152,21 @@
       transform: translateY(-2px);
     }
 
-    /* Ember CTA button */
-    .btn-ember {
-      background: linear-gradient(180deg, #ff4d5a 0%, #c22d3d 50%, #991b2a 100%);
-      border: 1px solid #991b2a;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.15),
-        0 0 20px rgba(194, 45, 61, 0.3);
-      color: #f5f0e6;
-      transition: all 0.3s ease;
-    }
-    .btn-ember:hover {
-      background: linear-gradient(180deg, #ff5f6a 0%, #d23d4d 50%, #a92b3a 100%);
+    /* Amber CTA button */
+    .btn-amber {
+      background: linear-gradient(180deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+      border: 1px solid #b45309;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.2),
-        0 0 30px rgba(194, 45, 61, 0.5);
+        0 0 20px rgba(245, 158, 11, 0.3);
+      color: #0f1829;
+      transition: all 0.3s ease;
+    }
+    .btn-amber:hover {
+      background: linear-gradient(180deg, #fde68a 0%, #fbbf24 50%, #f59e0b 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        0 0 30px rgba(245, 158, 11, 0.5);
       transform: translateY(-2px);
     }
 
@@ -176,14 +176,14 @@
       background: linear-gradient(90deg, transparent 0%, #6b5a45 20%, #a89060 50%, #6b5a45 80%, transparent 100%);
     }
 
-    /* Ember glow animation */
-    @keyframes ember-pulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(194, 45, 61, 0.3); }
-      50% { box-shadow: 0 0 30px rgba(194, 45, 61, 0.5); }
+    /* Amber glow animation */
+    @keyframes amber-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); }
     }
 
-    .animate-ember-pulse {
-      animation: ember-pulse 2s ease-in-out infinite;
+    .animate-amber-pulse {
+      animation: amber-pulse 2s ease-in-out infinite;
     }
 
     /* Floating particles with brass colors */
@@ -256,7 +256,7 @@
         <!-- CTA -->
         <div class="flex items-center space-x-4">
           <a href="#" class="hidden sm:block text-ivory-muted hover:text-ivory transition">ログイン</a>
-          <a href="#pricing" class="btn-ember px-5 py-2 rounded text-sm font-medium">
+          <a href="#pricing" class="btn-amber px-5 py-2 rounded text-sm font-medium">
             無料で始める
           </a>
         </div>
@@ -277,10 +277,10 @@
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="particle w-1 h-1 bg-brass/60" style="left: 15%; animation: float-up 12s infinite;"></div>
       <div class="particle w-1.5 h-1.5 bg-brass-light/40" style="left: 25%; animation: float-up 15s infinite 2s;"></div>
-      <div class="particle w-1 h-1 bg-ember/30" style="left: 40%; animation: float-up 10s infinite 4s;"></div>
+      <div class="particle w-1 h-1 bg-amber/30" style="left: 40%; animation: float-up 10s infinite 4s;"></div>
       <div class="particle w-2 h-2 bg-brass-dark/40" style="left: 55%; animation: float-up 18s infinite 1s;"></div>
       <div class="particle w-1 h-1 bg-brass/50" style="left: 70%; animation: float-up 14s infinite 3s;"></div>
-      <div class="particle w-1.5 h-1.5 bg-ember-glow/20" style="left: 85%; animation: float-up 16s infinite 5s;"></div>
+      <div class="particle w-1.5 h-1.5 bg-amber-glow/20" style="left: 85%; animation: float-up 16s infinite 5s;"></div>
     </div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -290,15 +290,15 @@
           <!-- Badge -->
           <div class="inline-flex items-center px-4 py-2 bg-night-700/80 border border-brass-muted/50 rounded text-brass-light text-sm mb-6">
             <span class="relative flex h-2 w-2 mr-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ember-glow opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-ember"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-glow opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-amber"></span>
             </span>
             24時間365日稼働中
           </div>
 
           <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-ivory">
             あなたが眠っている間も、<br>
-            <span class="gradient-text-ember">AIは眠らない。</span>
+            <span class="gradient-text-amber">AIは眠らない。</span>
           </h1>
 
           <p class="text-lg sm:text-xl text-ivory-muted mb-8 max-w-xl mx-auto lg:mx-0">
@@ -306,7 +306,7 @@
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="#pricing" class="w-full sm:w-auto btn-ember px-8 py-4 rounded font-semibold text-lg text-center animate-ember-pulse">
+            <a href="#pricing" class="w-full sm:w-auto btn-amber px-8 py-4 rounded font-semibold text-lg text-center animate-amber-pulse">
               無料で試してみる
             </a>
             <a href="#templates" class="w-full sm:w-auto border border-brass-muted hover:border-brass hover:bg-brass/5 text-ivory px-8 py-4 rounded font-semibold text-lg transition-all duration-300 text-center">
@@ -337,8 +337,8 @@
                 </div>
               </div>
               <div class="flex items-center space-x-2 text-xs">
-                <span class="flex items-center text-ember-glow">
-                  <span class="w-2 h-2 bg-ember rounded-full mr-1 animate-pulse"></span>
+                <span class="flex items-center text-amber-glow">
+                  <span class="w-2 h-2 bg-amber rounded-full mr-1 animate-pulse"></span>
                   稼働中
                 </span>
               </div>
@@ -351,7 +351,7 @@
                 <div class="text-xs text-ivory-muted">Active AI</div>
               </div>
               <div class="bg-night-800/80 rounded p-3 text-center border border-brass-muted/20">
-                <div class="text-2xl font-bold text-ember-glow">847</div>
+                <div class="text-2xl font-bold text-amber-glow">847</div>
                 <div class="text-xs text-ivory-muted">Tasks Done</div>
               </div>
               <div class="bg-night-800/80 rounded p-3 text-center border border-brass-muted/20">
@@ -362,7 +362,7 @@
 
             <!-- Active Tasks -->
             <div class="space-y-2">
-              <div class="bg-night-800/80 rounded p-3 flex items-center justify-between border-l-2 border-ember">
+              <div class="bg-night-800/80 rounded p-3 flex items-center justify-between border-l-2 border-amber">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-brass/20 rounded flex items-center justify-center">
                     <svg class="w-4 h-4 text-brass-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -374,7 +374,7 @@
                     <div class="text-xs text-ivory-muted">3件の変更を検知</div>
                   </div>
                 </div>
-                <span class="text-xs bg-ember/20 text-ember-glow px-2 py-1 rounded">稼働中</span>
+                <span class="text-xs bg-amber/20 text-amber-glow px-2 py-1 rounded">稼働中</span>
               </div>
 
               <div class="bg-night-800/80 rounded p-3 flex items-center justify-between border-l-2 border-brass">
@@ -451,7 +451,7 @@
       <div class="grid md:grid-cols-2 gap-12">
         <!-- Before -->
         <div class="card-artdeco rounded-lg p-8">
-          <div class="text-ember text-sm font-medium mb-4 flex items-center">
+          <div class="text-amber text-sm font-medium mb-4 flex items-center">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>
@@ -460,7 +460,7 @@
           <h3 class="font-display text-2xl font-bold mb-6 text-ivory">こんな悩み、ありませんか？</h3>
           <ul class="space-y-4">
             <li class="flex items-start space-x-3">
-              <svg class="w-6 h-6 text-ember flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6 text-amber flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
               <div>
@@ -469,7 +469,7 @@
               </div>
             </li>
             <li class="flex items-start space-x-3">
-              <svg class="w-6 h-6 text-ember flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6 text-amber flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
               <div>
@@ -478,7 +478,7 @@
               </div>
             </li>
             <li class="flex items-start space-x-3">
-              <svg class="w-6 h-6 text-ember flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6 text-amber flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
               <div>
@@ -487,7 +487,7 @@
               </div>
             </li>
             <li class="flex items-start space-x-3">
-              <svg class="w-6 h-6 text-ember flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-6 h-6 text-amber flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
               <div>
@@ -587,8 +587,8 @@
 
         <!-- Step 3 -->
         <div class="text-center">
-          <div class="w-20 h-20 card-artdeco rounded flex items-center justify-center mx-auto mb-6 border-ember/50">
-            <span class="text-3xl font-display font-bold text-ember-glow">3</span>
+          <div class="w-20 h-20 card-artdeco rounded flex items-center justify-center mx-auto mb-6 border-amber/50">
+            <span class="text-3xl font-display font-bold text-amber-glow">3</span>
           </div>
           <h3 class="font-display text-xl font-bold mb-3 text-ivory">起動して、あとはお任せ</h3>
           <p class="text-ivory-muted">
@@ -731,8 +731,8 @@
         <!-- Feature 1 - Large -->
         <div class="md:col-span-2 card-artdeco rounded-lg p-8 transition-all duration-300 hover:border-brass">
           <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-ember/20 rounded flex items-center justify-center flex-shrink-0 border border-ember/30">
-              <svg class="w-6 h-6 text-ember-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-12 h-12 bg-amber/20 rounded flex items-center justify-center flex-shrink-0 border border-amber/30">
+              <svg class="w-6 h-6 text-amber-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
@@ -857,11 +857,11 @@
         </div>
 
         <!-- Pro - Popular -->
-        <div class="card-artdeco rounded-lg p-6 border-ember/50 relative">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-ember text-ivory text-xs font-bold px-3 py-1 rounded">
+        <div class="card-artdeco rounded-lg p-6 border-amber/50 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber text-ivory text-xs font-bold px-3 py-1 rounded">
             人気
           </div>
-          <div class="text-sm text-ember-glow mb-2">Pro</div>
+          <div class="text-sm text-amber-glow mb-2">Pro</div>
           <div class="flex items-baseline mb-4">
             <span class="text-4xl font-display font-bold text-ivory">¥2,980</span>
             <span class="text-ivory-muted ml-2">/月</span>
@@ -869,31 +869,31 @@
           <p class="text-ivory-muted text-sm mb-6">フリーランスの方に</p>
           <ul class="space-y-3 mb-6">
             <li class="flex items-center text-sm text-ivory-muted">
-              <svg class="w-5 h-5 text-ember-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
               </svg>
               1 VM（高スペック）
             </li>
             <li class="flex items-center text-sm text-ivory-muted">
-              <svg class="w-5 h-5 text-ember-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
               </svg>
               無制限タスク
             </li>
             <li class="flex items-center text-sm text-ivory-muted">
-              <svg class="w-5 h-5 text-ember-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
               </svg>
               カスタムテンプレート
             </li>
             <li class="flex items-center text-sm text-ivory-muted">
-              <svg class="w-5 h-5 text-ember-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-glow mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
               </svg>
               スケジュール実行
             </li>
           </ul>
-          <a href="#" class="block w-full text-center py-3 btn-ember rounded font-medium">
+          <a href="#" class="block w-full text-center py-3 btn-amber rounded font-medium">
             始める
           </a>
         </div>
@@ -1054,14 +1054,14 @@
   <!-- Final CTA -->
   <section class="py-20 section-divider relative overflow-hidden">
     <!-- Background glow -->
-    <div class="absolute inset-0 bg-gradient-to-t from-ember/5 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-amber/5 to-transparent"></div>
 
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <!-- Decorative line -->
       <div class="deco-line w-32 mx-auto mb-8"></div>
 
       <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-ivory">
-        夜が明けるのを、<span class="gradient-text-ember">待つ必要はない。</span>
+        夜が明けるのを、<span class="gradient-text-amber">待つ必要はない。</span>
       </h2>
       <p class="text-ivory-muted text-lg mb-4 max-w-2xl mx-auto">
         あなたが休んでいる間も、Fuyajoは働き続ける。<br>
@@ -1071,7 +1071,7 @@
       <p class="font-display text-xl font-bold text-ivory mb-8">
         今日から、眠れる夜を取り戻そう。
       </p>
-      <a href="#pricing" class="inline-block btn-ember px-10 py-5 rounded font-semibold text-lg animate-ember-pulse">
+      <a href="#pricing" class="inline-block btn-amber px-10 py-5 rounded font-semibold text-lg animate-amber-pulse">
         無料トライアルを始める
       </a>
       <p class="text-sm text-ivory-muted mt-4">
